@@ -77,6 +77,10 @@
                 <div class="hidden md:block">
                     <a href="#app-section" class="text-sm font-medium hover:text-neon-blue transition-colors px-3 py-2">開始轉換</a>
                     <a href="#features" class="text-sm font-medium hover:text-neon-pink transition-colors px-3 py-2">特色功能</a>
+                    <!-- 新增說明書導覽按鈕 -->
+                    <button onclick="document.getElementById('manual-modal').classList.remove('hidden')" class="text-sm font-medium text-gray-300 hover:text-white bg-white/10 hover:bg-white/20 rounded-full px-4 py-1.5 ml-2 transition-all">
+                        📖 使用說明
+                    </button>
                 </div>
             </div>
         </div>
@@ -92,11 +96,15 @@
             <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-300 mx-auto mb-10">
                 採用最先進的深度學習音訊分離技術，完美消除人聲，保留無損高品質伴奏。你的私人 KTV 包廂，現在為你敞開。
             </p>
-            <div class="flex justify-center gap-4">
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#app-section" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-neon-purple to-neon-pink rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,20,147,0.5)]">
                     立即開始體驗
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </a>
+                <!-- 新增說明書次要按鈕 -->
+                <button onclick="document.getElementById('manual-modal').classList.remove('hidden')" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-gray-300 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors">
+                    閱讀使用說明
+                </button>
             </div>
         </div>
     </main>
@@ -159,11 +167,64 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
-    <footer class="py-8 text-center text-gray-500 text-sm">
-        <p class="mb-2">© 2026 KTV Maker Pro. Built with Python, Gradio & Tailwind.</p>
-        <p>Made with ❤️ by <span class="text-gray-300 font-semibold">Famidoc Chang & Gemini 3.1 pro</span></p>
+    <!-- 頁尾與 QR Code 分享區 -->
+    <footer class="py-12 bg-black border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+            
+            <!-- 手機掃碼區 -->
+            <div class="mb-8 flex flex-col items-center bg-gray-900/50 p-6 rounded-2xl border border-white/10">
+                <p class="text-gray-300 font-medium mb-4">👇 掃描 QR Code 分享給愛唱歌的朋友 👇</p>
+                <div class="p-2 bg-white rounded-xl shadow-[0_0_15px_rgba(0,208,255,0.2)]">
+                    <!-- 使用免費 API 動態生成專屬網址的 QR Code -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://famidoc.github.io/ktv-maker" alt="KTV Maker Pro QR Code" class="w-32 h-32 rounded-lg">
+                </div>
+            </div>
+
+            <div class="text-center text-gray-500 text-sm">
+                <p class="mb-2">© 2026 KTV Maker Pro. Built with Python, Gradio & Tailwind.</p>
+                <p>Made with ❤️ by <span class="text-gray-300 font-semibold">Famidoc Chang & Gemini 3.1 pro</span></p>
+            </div>
+        </div>
     </footer>
+
+    <!-- 使用說明書 Modal (隱藏視窗) -->
+    <div id="manual-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-gray-900 border border-white/10 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 relative glow-box shadow-2xl">
+            <!-- 關閉按鈕 -->
+            <button onclick="document.getElementById('manual-modal').classList.add('hidden')" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h2 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple mb-6">📖 KTV Maker Pro 使用說明書</h2>
+            
+            <div class="space-y-6 text-gray-300 leading-relaxed">
+                <div class="bg-black/30 p-5 rounded-xl border border-white/5">
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center"><span class="bg-neon-pink text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">1</span> 準備影片 (MP4)</h3>
+                    <p>由於 YouTube 官方版權防護，請先使用網頁上提供的「第三方下載工具（如 yt2mp3）」，將您喜歡的 YouTube 影片下載成 MP4 檔案到您的電腦或手機中。<br><span class="text-sm text-gray-400">* 建議選擇 720p 或 1080p 畫質，效果最好喔！</span></p>
+                </div>
+
+                <div class="bg-black/30 p-5 rounded-xl border border-white/5">
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center"><span class="bg-neon-blue text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">2</span> 上傳並轉換</h3>
+                    <p>回到 KTV Maker Pro 網頁，將您剛剛下載的 MP4 檔案拖曳進去（或點擊框框上傳），確認檔案讀取後，按下大大紫色的「開始 AI 去人聲轉換」按鈕。</p>
+                </div>
+
+                <div class="bg-black/30 p-5 rounded-xl border border-white/5">
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center"><span class="bg-neon-purple text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">3</span> 播放與下載</h3>
+                    <p>強大的 AI 正在雲端為您將歌手聲音抽離！一首 4 分鐘的歌大約需要等待 3~5 分鐘（請不要關閉網頁）。完成後，右邊的播放器就會出現專屬的「純伴奏影片」，您可以全螢幕歡唱，也可以點擊右下角下載保存！</p>
+                </div>
+
+                <div class="mt-6 text-sm text-gray-500 border-t border-white/10 pt-4">
+                    ⚠️ 溫馨提醒：本工具產出之伴唱帶僅供「個人私下練歌與娛樂」使用，請勿用於任何商業或侵權用途。
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button onclick="document.getElementById('manual-modal').classList.add('hidden')" class="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-colors">
+                    我瞭解了，開始體驗
+                </button>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
