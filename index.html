@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 伴唱帶產生器 | KTV Maker Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: {
+                            purple: '#b026ff',
+                            blue: '#00d0ff',
+                            pink: '#ff1493'
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 自定義霓虹光暈效果 */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(176, 38, 255, 0.7), 0 0 20px rgba(176, 38, 255, 0.5);
+        }
+        .glow-box {
+            box-shadow: 0 0 15px rgba(0, 208, 255, 0.3), inset 0 0 15px rgba(0, 208, 255, 0.1);
+        }
+        /* 隱藏 iframe 預設卷軸讓視覺更一體 */
+        iframe {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        iframe::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-neon-pink selection:text-white">
+
+    <!-- 背景動態漸層 -->
+    <div class="fixed inset-0 z-[-1] bg-gradient-to-br from-gray-900 via-purple-950 to-gray-950 animate-gradient-x opacity-80"></div>
+    
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 top-0 border-b border-white/10 bg-gray-950/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🎤</span>
+                    <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-purple glow-text">
+                        KTV Maker Pro
+                    </span>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#app-section" class="text-sm font-medium hover:text-neon-blue transition-colors px-3 py-2">開始轉換</a>
+                    <a href="#features" class="text-sm font-medium hover:text-neon-pink transition-colors px-3 py-2">特色功能</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄區塊 (Hero Section) -->
+    <main class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
+                將任何影片 <br class="md:hidden" />
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue">一鍵轉為伴唱帶</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-300 mx-auto mb-10">
+                採用最先進的深度學習音訊分離技術，完美消除人聲，保留無損高品質伴奏。你的私人 KTV 包廂，現在為你敞開。
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#app-section" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-neon-purple to-neon-pink rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,20,147,0.5)]">
+                    立即開始體驗
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 核心應用程式區塊 (嵌入 Hugging Face) -->
+    <section id="app-section" class="py-12 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative rounded-2xl bg-gray-900/60 backdrop-blur-xl border border-white/10 glow-box p-2 md:p-6 shadow-2xl">
+                <!-- 網頁標籤裝飾 -->
+                <div class="flex items-center gap-2 mb-4 px-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-2 text-xs text-gray-500 font-mono">ai-engine.connected</span>
+                </div>
+                
+                <!-- 嵌入我們寫好的 Hugging Face Gradio 應用 -->
+                <!-- 注意：這裡的 src 對應你帳號的 Space 網址 -->
+                <iframe 
+                    src="https://famidoc-youtube-ktv-api.hf.space" 
+                    frameborder="0" 
+                    class="w-full rounded-xl bg-white"
+                    style="height: 850px;"
+                    title="KTV AI Engine"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色說明區塊 -->
+    <section id="features" class="py-20 bg-black/50 border-t border-white/5 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- 特色 1 -->
+                <div class="text-center p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-14 h-14 mx-auto bg-neon-purple/20 rounded-xl flex items-center justify-center mb-4">
+                        <span class="text-3xl">🧠</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">專業 AI 引擎</h3>
+                    <p class="text-gray-400">使用開源界頂尖的 Demucs 音訊分離模型，精準剝離人聲，保留貝斯與鼓聲的震撼。</p>
+                </div>
+                <!-- 特色 2 -->
+                <div class="text-center p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-14 h-14 mx-auto bg-neon-blue/20 rounded-xl flex items-center justify-center mb-4">
+                        <span class="text-3xl">🔒</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">無痕雲端運算</h3>
+                    <p class="text-gray-400">繁重的 AI 運算 100% 在雲端伺服器完成，不消耗您電腦的效能，處理完畢自動清理。</p>
+                </div>
+                <!-- 特色 3 -->
+                <div class="text-center p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div class="w-14 h-14 mx-auto bg-neon-pink/20 rounded-xl flex items-center justify-center mb-4">
+                        <span class="text-3xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">影音無損縫合</h3>
+                    <p class="text-gray-400">分離出的純淨伴奏會與原始高畫質影片完美同步合併，提供沉浸式的 KTV 體驗。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="py-8 text-center text-gray-500 text-sm">
+        <p>© 2026 KTV Maker Pro. Built with Python, Gradio & Tailwind.</p>
+    </footer>
+
+</body>
+</html>
