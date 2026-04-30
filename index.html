@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 伴唱帶產生器 | KTV Maker Pro</title>
+    
+    <!-- PWA Icon 與 Manifest 設定 -->
+    <link rel="icon" href="icon.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="icon.jpg">
+    <link rel="manifest" href="manifest.json">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -80,7 +86,7 @@
     <main class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-                將任何影片 <br class="md:hidden" />
+                將歌曲MV <br class="md:hidden" />
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue">一鍵轉為伴唱帶</span>
             </h1>
             <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-300 mx-auto mb-10">
@@ -107,8 +113,7 @@
                     <span class="ml-2 text-xs text-gray-500 font-mono">ai-engine.connected</span>
                 </div>
                 
-                <!-- 嵌入我們寫好的 Hugging Face Gradio 應用 -->
-                <!-- 注意：這裡的 src 對應你帳號的 Space 網址 -->
+                <!-- 嵌入我們寫好的 Hugging Face Gradio 應用，並啟用全螢幕權限 -->
                 <iframe 
                     src="https://famidoc-youtube-ktv-api.hf.space" 
                     frameborder="0" 
@@ -156,7 +161,8 @@
 
     <!-- 頁尾 -->
     <footer class="py-8 text-center text-gray-500 text-sm">
-        <p>© 2026 KTV Maker Pro. Built with Python, Gradio & Tailwind.</p>
+        <p class="mb-2">© 2026 KTV Maker Pro. Built with Python, Gradio & Tailwind.</p>
+        <p>Made with ❤️ by <span class="text-gray-300 font-semibold">Famidoc Chang & Gemini 3.1 pro</span></p>
     </footer>
 
 </body>

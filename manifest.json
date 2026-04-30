@@ -1,0 +1,17 @@
+{
+  "name": "KTV Maker Pro",
+  "short_name": "KTV Maker",
+  "description": "將歌曲MV 一鍵轉為伴唱帶",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#b026ff",
+  "icons": [
+    {
+      "src": "icon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
